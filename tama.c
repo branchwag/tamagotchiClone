@@ -59,7 +59,7 @@ int main(void) {
         DrawTextureRec(sprite, source, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
 
         Rectangle face = (Rectangle){0, 400, 190, 150};
-        DrawTextureRec(sprite, face, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
+        DrawTextureRec(sprite, face, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 20}, WHITE);
 
 
         DrawText(TextFormat("Hunger: %d", pet.hunger), 10, 10, 20, BLACK);
