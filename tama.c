@@ -13,6 +13,8 @@ typedef struct {
     Rectangle body;
 } Tamagotchi;
 
+Texture2D sprite;
+
 void UpdateTamagotchi(Tamagotchi *pet) {
     pet->hunger = (pet->hunger + 1) % 100;
     pet->happiness = (pet->happiness - 1 + 100) % 100;
@@ -35,6 +37,7 @@ void PutPetToSleep(Tamagotchi *pet) {
 
 int main(void) {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Tamagotchi Game");
+    sprite = LoadTexture("spritesheet.png");
     SetTargetFPS(60);
 
     Tamagotchi pet = {50, 50, 50, {SCREEN_WIDTH/2 - 25, SCREEN_HEIGHT/2 - 25, 50, 50}};
@@ -53,7 +56,8 @@ int main(void) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        DrawRectangleRec(pet.body, RED);
+        //DrawRectangleRec(pet.body, RED);
+        DrawTexture(sprite, 0, 0, WHITE);
         DrawText(TextFormat("Hunger: %d", pet.hunger), 10, 10, 20, BLACK);
         DrawText(TextFormat("Happiness: %d", pet.happiness), 10, 40, 20, BLACK);
         DrawText(TextFormat("Energy: %d", pet.energy), 10, 70, 20, BLACK);
