@@ -57,8 +57,8 @@ int main(void) {
         ClearBackground(RAYWHITE);
 
         //DrawRectangleRec(pet.body, RED);
-        Rectangle source = (Rectangle){0, 0, 60, 60};
-        DrawTextureRec(sprite, source, (Vector2){100, 100}, WHITE);
+        Rectangle source = (Rectangle){0, 170, 190, 150};
+        DrawTextureRec(sprite, source, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
         DrawText(TextFormat("Hunger: %d", pet.hunger), 10, 10, 20, BLACK);
         DrawText(TextFormat("Happiness: %d", pet.happiness), 10, 40, 20, BLACK);
         DrawText(TextFormat("Energy: %d", pet.energy), 10, 70, 20, BLACK);
