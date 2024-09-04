@@ -32,8 +32,10 @@ void PlayWithPet(Tamagotchi *pet) {
     pet->energy = (pet->energy - 5 + 100) % 100;
 }
 
-void PutPetToSleep(Tamagotchi *pet) {
+void PutPetToSleep(Tamagotchi *pet, Rectangle *currentFace, int *faceShift) {
     pet->energy = (pet->energy + 20) % 100;
+    *currentFace = (Rectangle){225, 400, 190, 150};
+    *faceShift = 30;
 }
 
 int main(void) {
@@ -57,7 +59,7 @@ int main(void) {
 
         if (IsKeyPressed(KEY_F)) FeedPet(&pet, &currentFace, &faceShift);
         if (IsKeyPressed(KEY_P)) PlayWithPet(&pet);
-        if (IsKeyPressed(KEY_S)) PutPetToSleep(&pet);
+        if (IsKeyPressed(KEY_S)) PutPetToSleep(&pet, &currentFace, &faceShift);
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
