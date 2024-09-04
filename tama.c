@@ -27,9 +27,11 @@ void FeedPet(Tamagotchi *pet, Rectangle *currentFace, int *faceShift) {
     *faceShift = 35;
 }
 
-void PlayWithPet(Tamagotchi *pet) {
+void PlayWithPet(Tamagotchi *pet, Rectangle *body) {
     pet->happiness = (pet->happiness + 10) % 100;
     pet->energy = (pet->energy - 5 + 100) % 100;
+    *body = (Rectangle){195, 170, 190, 150};
+
 }
 
 void PutPetToSleep(Tamagotchi *pet, Rectangle *currentFace, int *faceShift) {
@@ -44,7 +46,7 @@ int main(void) {
     SetTargetFPS(60);
 
     Tamagotchi pet;
-    
+    Rectangle body = (Rectangle){0, 170, 190, 150};
     Rectangle defaultFace = (Rectangle){0, 400, 190, 150};
     Rectangle currentFace = defaultFace;
     int faceShift = 0;
@@ -58,20 +60,13 @@ int main(void) {
         }
 
         if (IsKeyPressed(KEY_F)) FeedPet(&pet, &currentFace, &faceShift);
-        if (IsKeyPressed(KEY_P)) PlayWithPet(&pet);
+        if (IsKeyPressed(KEY_P)) PlayWithPet(&pet, &body);
         if (IsKeyPressed(KEY_S)) PutPetToSleep(&pet, &currentFace, &faceShift);
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        Rectangle source = (Rectangle){0, 170, 190, 150};
-        DrawTextureRec(sprite, source, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
-
-        //Rectangle face = (Rectangle){0, 400, 190, 150};
-        //if (defaultFace) {
-        //DrawTextureRec(sprite, face, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 20}, WHITE);
-        //}
-
+        DrawTextureRec(sprite, body, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
         DrawTextureRec(sprite, currentFace, (Vector2){SCREEN_WIDTH/2 + faceShift, SCREEN_HEIGHT/2 + 20}, WHITE);
 
 
