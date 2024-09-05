@@ -66,14 +66,23 @@ int main(void) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        DrawTextureRec(sprite, body, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
-        DrawTextureRec(sprite, currentFace, (Vector2){SCREEN_WIDTH/2 + faceShift, SCREEN_HEIGHT/2 + 20}, WHITE);
+        //DrawTextureRec(sprite, body, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
+        //DrawTextureRec(sprite, currentFace, (Vector2){SCREEN_WIDTH/2 + faceShift, SCREEN_HEIGHT/2 + 20}, WHITE);
 
 
         DrawText(TextFormat("Hunger: %d", pet.hunger), 10, 10, 20, BLACK);
         DrawText(TextFormat("Happiness: %d", pet.happiness), 10, 40, 20, BLACK);
         DrawText(TextFormat("Energy: %d", pet.energy), 10, 70, 20, BLACK);
         DrawText("Press F to Feed, P to Play, S to Sleep", 10, SCREEN_HEIGHT - 30, 20, DARKGRAY);
+
+        if (pet.energy < 80) {
+            Rectangle body = (Rectangle){0, 170, 190, 150};
+            DrawTextureRec(sprite, body, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
+            DrawTextureRec(sprite, currentFace, (Vector2){SCREEN_WIDTH/2 + faceShift, SCREEN_HEIGHT/2 + 20}, WHITE);
+        } else {
+          DrawTextureRec(sprite, body, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
+          DrawTextureRec(sprite, currentFace, (Vector2){SCREEN_WIDTH/2 + faceShift, SCREEN_HEIGHT/2 + 20}, WHITE);
+        }
 
         EndDrawing();
     }
