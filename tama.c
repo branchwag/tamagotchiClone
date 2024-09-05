@@ -31,13 +31,13 @@ void PlayWithPet(Tamagotchi *pet, Rectangle *body) {
     pet->happiness = (pet->happiness + 10) % 100;
     pet->energy = (pet->energy - 5 + 100) % 100;
     *body = (Rectangle){195, 170, 190, 150};
-
 }
 
-void PutPetToSleep(Tamagotchi *pet, Rectangle *currentFace, int *faceShift) {
+void PutPetToSleep(Tamagotchi *pet, Rectangle *currentFace, int *faceShift, Rectangle *body) {
     pet->energy = (pet->energy + 20) % 100;
     *currentFace = (Rectangle){225, 400, 190, 150};
     *faceShift = 30;
+    *body = (Rectangle){0, 170, 190, 150};
 }
 
 int main(void) {
@@ -61,14 +61,10 @@ int main(void) {
 
         if (IsKeyPressed(KEY_F)) FeedPet(&pet, &currentFace, &faceShift);
         if (IsKeyPressed(KEY_P)) PlayWithPet(&pet, &body);
-        if (IsKeyPressed(KEY_S)) PutPetToSleep(&pet, &currentFace, &faceShift);
+        if (IsKeyPressed(KEY_S)) PutPetToSleep(&pet, &currentFace, &faceShift, &body);
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
-
-        //DrawTextureRec(sprite, body, (Vector2){SCREEN_WIDTH/2, SCREEN_HEIGHT/2}, WHITE);
-        //DrawTextureRec(sprite, currentFace, (Vector2){SCREEN_WIDTH/2 + faceShift, SCREEN_HEIGHT/2 + 20}, WHITE);
-
 
         DrawText(TextFormat("Hunger: %d", pet.hunger), 10, 10, 20, BLACK);
         DrawText(TextFormat("Happiness: %d", pet.happiness), 10, 40, 20, BLACK);
